@@ -16,8 +16,6 @@ load("finalDF.Rdata");
 
 FDF<-finalDF
 
-library(epitools)
-
 
 
 
@@ -27,39 +25,37 @@ secondary_questions_in<-c("E3ii_Easily_recognised_170_"
                           #,"PRRS_Zuig_Rep_Vac_Bin"#"PRRS_ZuigVac_Bin"
                           ,"Ecoli_Sow_Rep_Vac_Bin"#"Ecoli_SowVac_Bin"
                           #,"Myco_Sow_Rep_Vac_Bin"#"Myco_SowVac_Bin"
-                          ,"Ery_Sow_Rep_Vac_Bin" #"Ery_SowVac_Bin"
+                          #,"Ery_Sow_Rep_Vac_Bin" #"Ery_SowVac_Bin"
                           ,"Ssuis_Sow_Rep_Vac_Bin"#"Ssuis_SowVac_Bin"
                           #,"Rota_Sow_Rep_Vac_Bin"#"Rota_SowVac_Bin"
                           ,"PPV_Sow_Rep_Vac_Bin")# "PPV_SowVac_Bin"
 
-#these are all outcomes
-diseases<-c("Zeugen_Indtr__Bin",
+diseases<-c(#"Zeugen_Indtr__Bin",
   "Zeugen__LOCOMOTIEZENUWSTELSEL____Bin",
   "Zuigendebiggen__LOCOMOTIEZENUWSTELSEL____Bin",
   "Gespeendebiggen__DIGESTIETRACTUS____Bin",
   "Gespeendebiggen__LOCOMOTIEZENUWSTELSEL____Bin",
-  "Gespeendebiggen__RESPIRATIETRACTUS____Bin",
-  "Weaners_Indtr__Bin",
-  "H9_ii_Whole_DDDA_sows_499_",
-  "H9_ii_Whole_DDDA_wp_500_",
-  "H9_ii_Whole_DDDA_fp_501_",
-  "Macrolides_lincosamidesAMU_Ind_sows_Bin",
-  "Macrolides_lincosamidesAMU_Ind_weaners_Bin",
-  "Macrolides_lincosamidesAMU_Ind_weaners",
-  "PenicillinsAMU_Ind_sows_Bin",
-  "PenicillinsAMU_Ind_weaners_Bin",
-  "TetracyclinesAMU_Ind_sows_Bin",
-  "TetracyclinesAMU_Ind_weaners_Bin",
-  "Trimethoprim_SulfonamidesAMU_Ind_sows_Bin",
-  "Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin")
+  "Gespeendebiggen__RESPIRATIETRACTUS____Bin"#,
+  # "Weaners_Indtr__Bin",
+  # "H9_ii_Whole_DDDA_sows_499_",
+  # "H9_ii_Whole_DDDA_wp_500_",
+  # "H9_ii_Whole_DDDA_fp_501_",
+  # "Macrolides_lincosamidesAMU_Ind_sows_Bin",
+  # "Macrolides_lincosamidesAMU_Ind_weaners_Bin",
+  # "Macrolides_lincosamidesAMU_Ind_weaners",
+  # "PenicillinsAMU_Ind_sows_Bin",
+  # "PenicillinsAMU_Ind_weaners_Bin",
+  # "TetracyclinesAMU_Ind_sows_Bin",
+  # "TetracyclinesAMU_Ind_weaners_Bin",
+  # "Trimethoprim_SulfonamidesAMU_Ind_sows_Bin",
+  # "Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin"
+)
 
 
 
-
-#specofying which vacs to be used depending on the age category of interest
 Vacsdf<-data.frame(VACC=c(rep("Ecoli_SowVac_Bin",2),rep("Clostr_SowVac_Bin",1),rep("Ssuis_SowVac_Bin",5),
                           #rep("Ssuis_SowVacREP_BIN2",5),
-                          rep("Rota_SowVac_Bin",3),rep("PPV_SowVac_Bin",1),rep("Ery_SowVac_Bin",3),
+                          rep("Rota_SowVac_Bin",3),rep("PPV_SowVac_Bin",1),#rep("Ery_SowVac_Bin",3),
                           rep("Influ_SowVac_Bin",4),rep("Myco_SowVac_Bin",4),rep("PRRS_SowVac_Bin",4),
                           rep("PCV2_ZuigVac_Bin",3),rep("Myco_ZuigVac_Bin",3),rep("PRRS_ZuigVac_Bin",4),
                           rep("PCV2_WeanVac_Bin",3)),
@@ -69,7 +65,7 @@ Vacsdf<-data.frame(VACC=c(rep("Ecoli_SowVac_Bin",2),rep("Clostr_SowVac_Bin",1),r
                          #"Zeugen__LOCOMOTIEZENUWSTELSEL____Bin","Zuigendebiggen__LOCOMOTIEZENUWSTELSEL____Bin","Gespeendebiggen__LOCOMOTIEZENUWSTELSEL____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_",
                          "Gespeendebiggen__DIGESTIETRACTUS____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_",
                          "H9_ii_Whole_DDDA_sows_499_",
-                         "H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
+                         #"H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
                          "Gespeendebiggen__RESPIRATIETRACTUS____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
                          "Gespeendebiggen__RESPIRATIETRACTUS____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
                          "Gespeendebiggen__RESPIRATIETRACTUS____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
@@ -78,19 +74,16 @@ Vacsdf<-data.frame(VACC=c(rep("Ecoli_SowVac_Bin",2),rep("Clostr_SowVac_Bin",1),r
                          "Gespeendebiggen__RESPIRATIETRACTUS____Bin","H9_ii_Whole_DDDA_sows_499_","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_",
                          "Gespeendebiggen__DIGESTIETRACTUS____Bin","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_"))
 
-#Settings for RF
 treez<-500
 rfMaxit_B<- 1 #200
 rfMaxit<- 1 #100
 rfMaxit0<-1 #3
-B_reps = 2
-activate_bootstrap=T
-
+B_reps = 0
+activate_bootstrap=F
+#glimpse(FDF)
 
 
 #Functions needed
-
-#This CMixRF model for continuous outcome
 MixRF_mod<-    function (Y, X, random, data, initialRandomEffects = 0, ErrorTolerance = 0.001, 
                          MaxIterations = 100) 
 {
@@ -126,7 +119,7 @@ MixRF_mod<-    function (Y, X, random, data, initialRandomEffects = 0, ErrorTole
 
 
 
-#This CMixRF model for binary outcome
+
 MixRFb <- function(Y, x, random, data, initialRandomEffects=0,
                    ErrorTolerance=0.001, MaxIterations=200, NTREES=treez,
                    ErrorTolerance0=0.001, MaxIterations0=15, verbose=FALSE) {
@@ -212,8 +205,10 @@ MixRFb <- function(Y, x, random, data, initialRandomEffects=0,
   return(result)
 }
 
-
-#this the predict function based on OOB 
+########################
+#as.vector(which(sapply(FDF, class)=="numeric"|sapply(FDF, class)=="factor"))
+# predict the link transformed response (eta)
+############
 predict.MixRF <- function(object, newdata, EstimateRE=TRUE){
   
   forestPrediction <- predict(object$forest,newdata=newdata,OOB=T)
@@ -229,11 +224,10 @@ predict.MixRF <- function(object, newdata, EstimateRE=TRUE){
   
   return(completePrediction)
 }
-#______________________________________________________________________________________________________________
+#################
 
-#this is for final refinement of which set of predictor is to be used for each depending on the age of interest the risk factors needs to plausible before testing
-#gen mean it is for all age categories relevant, the other names represent the respective age category
-#Find the correct variables for each age group
+#taildocking is none!
+#Find the correct variables for each disease
 Sep_d<-data.frame(Vars=colnames(FDF),
                   Cat=c("Gen",rep(NA,length(FDF)-1)))
 #####
@@ -242,16 +236,18 @@ Sep_d$Cat[which(colnames(FDF)=="A8i_Farm_vocation_20_")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="H9_ii_Whole_DDDA_sows_499_")]<-"Sow"
 Sep_d$Cat[which(colnames(FDF)=="H9_ii_Whole_DDDA_wp_500_")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="H9_ii_Whole_DDDA_fp_501_")]<-"Fat"
-Sep_d$Cat[which(colnames(FDF)=="TDDDA"):which(colnames(FDF)=="calc_fat")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="DDDA_sows_piglets_tr_"):which(colnames(FDF)=="calc_fat")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Animals_Total")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="Animals_Total_tr")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Zeugen__LOCOMOTIEZENUWSTELSEL____Bin"):which(colnames(FDF)=="Zuigendebiggen__LOCOMOTIEZENUWSTELSEL____Bin")]<-"Gen"
-Sep_d$Cat[which(colnames(FDF)=="Macrolides_lincosamidesAMU_Ind_sows"):which(colnames(FDF)=="Trimethoprim_SulfonamidesAMU_Ind_sows")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="AmphenicolsAMU_Ind_sows"):which(colnames(FDF)=="Trimethoprim_SulfonamidesAMU_Ind_sows")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Gespeendebiggen__DIGESTIETRACTUS____Bin"):which(colnames(FDF)=="Zeugen_Indtr__Bin")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="Macrolides_lincosamidesAMU_Ind_weaners"):which(colnames(FDF)=="Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="A3_Employees_status_6_"):which(colnames(FDF)=="A5i_Personnel_num_8_")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="A5ii_FTE_num_9_")]<-"NONE"
-Sep_d$Cat[which(colnames(FDF)=="A7iib_Cattle_14_"):which(colnames(FDF)=="A7i_Other_animals_19_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="A7iib_Cattle_14_")]<-"Sow|Wean"
+Sep_d$Cat[which(colnames(FDF)=="A7iic_SheepGoats_16_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="A7i_Other_animals_19_")]<-"Gen"
 
 
 Sep_d$Cat[which(colnames(FDF)=="A21_Lactating_piglets_losses_24_"):which(colnames(FDF)=="A24_Sows_losses_30_")]<-"NONE"
@@ -263,17 +259,20 @@ Sep_d$Cat[which(colnames(FDF)=="A14_Delivery_freq_33_"):which(colnames(FDF)=="A1
 Sep_d$Cat[which(colnames(FDF)=="A27_Weaned_per_sow_per_year_36_"):which(colnames(FDF)=="A19_Sows_removal_freq_43_")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="A31_Open_sow_period_44_")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="A20_Worp_Index_45_")]<-"NONE"
-Sep_d$Cat[which(colnames(FDF)=="A34_Ventilation_check_48_"):which(colnames(FDF)=="B1_Loading_bay_Hygiene_Score_113_")]<-"Gen"
-Sep_d$Cat[which(colnames(FDF)=="B2ii_Allin_Allout_114_"):which(colnames(FDF)=="B2iv_Visits_quarantine_116_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="A34_Ventilation_check_48_"):which(colnames(FDF)=="A36_Resp_Areas2_112_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="B1_Loading_bay_Hygiene_Score_113_")]<-"NONE"
+
+
 Sep_d$Cat[which(colnames(FDF)=="C1_Water_source_127_"):which(colnames(FDF)=="C2_Water_acidification_128_")]<-"Gen"
 
-Sep_d$Cat[which(colnames(FDF)=="C4iii_Avg_FI_132_"):which(colnames(FDF)=="C4iv_Avg_WI_133_")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="C8iii_Organic_acids_146_"):which(colnames(FDF)=="C8vi_Myc_binder_149_")]<-"Wean"
 
 Sep_d$Cat[which(colnames(FDF)=="D4ii_Design_Score1_156_"):which(colnames(FDF)=="E2_Cleaned_equip_168_")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="E3i_Stored_individually_169_")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="E3ii_Easily_recognised_170_")]<-"Gen"#Leave one for the code to ork in the if
-Sep_d$Cat[which(colnames(FDF)=="E4_Clean_equip_before_arrival_171_"):which(colnames(FDF)=="E6_Foot_baths_score_173_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="E4_Clean_equip_before_arrival_171_"):which(colnames(FDF)=="E5_Disinf_equip_before_arrival_172_")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="E6_Foot_baths_score_173_")]<-"NONE"
+
 Sep_d$Cat[which(colnames(FDF)=="F2_Fence_score_217_")]<-"NONE"
 
 Sep_d$Cat[which(colnames(FDF)=="G2_Free_sow_220_"):which(colnames(FDF)=="G3_AllinAllout_farrow_221_")]<-"Gen"
@@ -297,7 +296,7 @@ Sep_d$Cat[which(colnames(FDF)=="H6vii_SoapW_271_")]<-"NONE"
 
 Sep_d$Cat[which(colnames(FDF)=="I4ii_Drying_days_506_")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="I5_Cleaning_score_507_"):which(colnames(FDF)=="A1_Province_4_PercDen")]<-"Gen"
-Sep_d$Cat[which(colnames(FDF)=="Educational_level_A6c")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Educational_level_A6c")]<-"None"
 Sep_d$Cat[which(colnames(FDF)=="num_diff_species_")]<-"Gen"
 
 Sep_d$Cat[which(colnames(FDF)=="Weaners_density_c_A32")]<-"NONE"
@@ -318,23 +317,39 @@ Sep_d$Cat[which(colnames(FDF)=="Water_check_c")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Water_check_More_C3")]<-"Gen"
 
 Sep_d$Cat[which(colnames(FDF)=="Feed_unlimited_C4i")]<-"Wean"
-Sep_d$Cat[which(colnames(FDF)=="Diseased_visits_end_D1"):which(colnames(FDF)=="Foot_baths_bin_E6")]<-"Gen"
-Sep_d$Cat[which(colnames(FDF)=="Foot_baths_c_E6")]<-"NONE"
-Sep_d$Cat[which(colnames(FDF)=="Fence_score_c_F2"):which(colnames(FDF)=="Companion_animals_only_out_F3")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Diseased_visits_end_D1")]<-"Sow|Wean"
 
-Sep_d$Cat[which(colnames(FDF)=="Weekly_system_1_G1"):which(colnames(FDF)=="Weekly_system_123_G1")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Diseased_visits_start_D1"):which(colnames(FDF)=="Age_visits_JO")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Swine_free_contact_24h_D3")]<-"Sow|Fat"
+Sep_d$Cat[which(colnames(FDF)=="Foot_baths_bin_E6")]<-"Gen"
+
+
+Sep_d$Cat[which(colnames(FDF)=="Foot_baths_c_E6")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Fence_score_c_F2")]<-"NONE"
+
+Sep_d$Cat[which(colnames(FDF)=="Companion_animals_cont_with_dier_F3"):which(colnames(FDF)=="Companion_animals_only_out_F3")]<-"Gen"
+
+
+Sep_d$Cat[which(colnames(FDF)=="Weekly_system_1_G1")]<-"NONE"
+
+Sep_d$Cat[which(colnames(FDF)=="Weekly_system_12_G1"):which(colnames(FDF)=="Weekly_system_123_G1")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="Weekly_system_345_G1"):which(colnames(FDF)=="Weekly_system_45_G1")]<-"NONE"
 
 
-Sep_d$Cat[which(colnames(FDF)=="CF_plan_bin_G7i")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="CF_plan_bin_G7i")]<-"Sow|Wean"
 Sep_d$Cat[which(colnames(FDF)=="CF_plan_c_G7i")]<-"NONE"
 
 Sep_d$Cat[which(colnames(FDF)=="Sick_bay_absence_G12"):which(colnames(FDF)=="Sick_bay_other_comp_or_building_G12")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="H6ii_Alt_treat_reasonS_259_estrus_bin")]<-"NONE"
 
 Sep_d$Cat[which(colnames(FDF)=="Cleaning_frq_DCc_I4i")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="Air_Score"):which(colnames(FDF)=="Env_measures_T_bin")]<-"Wean"
-Sep_d$Cat[which(colnames(FDF)=="Env_measures_TRV_bin")]<-"NONE"
-Sep_d$Cat[which(colnames(FDF)=="Env_Score"):which(colnames(FDF)=="Floor_heat")]<-"Wean"
+#Sep_d$Cat[which(colnames(FDF)=="Env_measures_TRV_bin")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Env_Score"):which(colnames(FDF)=="Water_equip_Score")]<-"Wean"
+Sep_d$Cat[which(colnames(FDF)=="Bed_presence")]<-"Wean"
+Sep_d$Cat[which(colnames(FDF)=="Bed_score")]<-"None"
+Sep_d$Cat[which(colnames(FDF)=="Dir_cont")]<-"Wean"
+Sep_d$Cat[which(colnames(FDF)=="Floor_heat")]<-"Wean"
 
 Sep_d$Cat[which(colnames(FDF)=="Floor_Grid_bin")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Floor_Grid")]<-"Wean"
@@ -342,14 +357,24 @@ Sep_d$Cat[which(colnames(FDF)=="Beton_PGrid")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="Plastic_PGrid")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Beton_partialgrid_floor"):which(colnames(FDF)=="Plastic_grid_floor")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="Plastic_partialgrid_floor")]<-"Wean"
+Sep_d$Cat[which(colnames(FDF)=="Auto_vent")]<-"Wean"
 
 Sep_d$Cat[which(colnames(FDF)=="Arrival_animals_Bin")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Arrival_animals_Gelten")]<-"Gen"
 
-Sep_d$Cat[which(colnames(FDF)=="Isolat_room_Gilts"):which(colnames(FDF)=="Pen_room_Gilts")]<-"Gen"
-Sep_d$Cat[which(colnames(FDF)=="Castration"):which(colnames(FDF)=="Aprt_dis_AB")]<-"Sow"
-Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_None")]<-"Sow"
-Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_Else")]<-"Sow"
+Sep_d$Cat[which(colnames(FDF)=="Isolat_room_Gilts")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Quarant_room_Gilts")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Pen_room_Gilts")]<-"NONE"
+
+Sep_d$Cat[which(colnames(FDF)=="Castration")]<-"Sow"
+Sep_d$Cat[which(colnames(FDF)=="Tail_docking")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Teeth_cut")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_Freq")]<-"Sow"
+Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_AB")]<-"NONE"
+
+
+Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_None")]<-"NONE"
+Sep_d$Cat[which(colnames(FDF)=="Aprt_dis_Else")]<-"NONE"
 
 Sep_d$Cat[which(colnames(FDF)=="Ecoli_SowVac_Bin"):which(colnames(FDF)=="PRRS_ZuigVac_Bin")]<-"Vacs"
 
@@ -375,21 +400,22 @@ Sep_d$Cat[which(colnames(FDF)=="havovwombo24")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="hbowo")]<-"Gen"
 Sep_d$Cat[which(colnames(FDF)=="vbomavovmbombo1")]<-"NONE"
 
-Sep_d$Cat[which(colnames(FDF)=="Geslotenbedrijfzeugenbiggenenvleesvarkens"):which(colnames(FDF)=="Vermeerderingzeugenenbiggentotca23kg")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Geslotenbedrijfzeugenbiggenenvleesvarkens"):which(colnames(FDF)=="Vermeerderingzeugenenbiggentotca23kg")]<-"Sow|Wean"
 
 Sep_d$Cat[which(colnames(FDF)=="Aanvoervananderbedrijf")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Eigenopfok")]<-"NONE"
 
-Sep_d$Cat[which(colnames(FDF)=="KIalleenzoekbeeraangevoerdvananderbedrijf"):which(colnames(FDF)=="KIalleenzoekbeeruiteigenopfok")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="KIalleenzoekbeeraangevoerdvananderbedrijf"):which(colnames(FDF)=="KIalleenzoekbeeruiteigenopfok")]<-"Sow|Wean"
 
 Sep_d$Cat[which(colnames(FDF)=="Brijvoer"):which(colnames(FDF)=="Kruimel")]<-"Wean"
 Sep_d$Cat[which(colnames(FDF)=="twee_weekssysteem"):which(colnames(FDF)=="Wekelijkssysteem")]<-"NONE"
 Sep_d$Cat[which(colnames(FDF)=="Pergeslacht"):which(colnames(FDF)=="Pertoom")]<-"Wean"
-Sep_d$Cat[which(colnames(FDF)=="Pr_Fat")]<-"Gen"
+Sep_d$Cat[which(colnames(FDF)=="Pr_Fat")]<-"Sow|Wean"
 
 ########
 Sep_d
 any(is.na(Sep_d))
+
 
 
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!_____________________Here starts the selection algorithm _____________________!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -924,8 +950,7 @@ for (BS in 1:REPET){
     
     
   }
-  EF_list
-  All_res_adj
+ 
   TEN_TIMES_RES[[length(TEN_TIMES_RES)+1]]<-EF_list
   TEN_TIMES_res_adj[[length(TEN_TIMES_res_adj)+1]]<-All_res_adj
   
@@ -933,10 +958,6 @@ for (BS in 1:REPET){
 }
 
 
-
-#save(TEN_TIMES_RES, file = "TEN_TIMES_RES_AMU.Rdata")
-#save(TEN_TIMES_res_adj, file = "TEN_TIMES_res_adj_AMU.Rdata")
-#save(EF_list, file = "EF_list.Rdata")
 #&&&&&&&&&&&&&&&&&&&This is the full file for Diseases_EF_pigs analysis &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 
 #Finding the variables that appeared across 20 iterations
@@ -1015,7 +1036,8 @@ names(All_res_adj)<-NULL
 diseases<-diseases_names
 
 
-
+B_reps = 2
+activate_bootstrap=T
 
 
 
@@ -1218,7 +1240,7 @@ for(k in 1:length(diseases)){
         print(c(i,db,diseases[k]))
       }
       ES_BOOT_DF<-cbind(ES_BOOT_DF,as.numeric(c(EFs[3],ES_BOOT)))
-      ES_TOT<-t(data.frame(CI(as.numeric(c(EFs[3],ES_BOOT)))))
+      ES_TOT<-t(data.frame(CI(as.numeric(c(EFs[3],ES_BOOT)),ci=(1-0.05)^(1/ncol(ES_BOOT_DF)))))
       rownames(ES_TOT)<-NULL
       EFs<-cbind(EFs[1],ES_TOT,EFs[5])
       
@@ -1292,9 +1314,9 @@ EF_listDF1$PREDS<-ifelse(grepl("Naaldvrij_Needle_Zuig_Bin",EF_listDF1$PREDS,fixe
                    ifelse(grepl("A36_Sep_Areas2_111_",EF_listDF1$PREDS,fixed=T), "There is clear separation between clean and dirty areas in the indoors of the farm (Ref:No)",
                    ifelse(grepl("Age_visits_JO",EF_listDF1$PREDS,fixed=T), "Daily workflow is from young to older pigs (Ref:No)",
                    ifelse(grepl("H6vii_SoapS_264_",EF_listDF1$PREDS,fixed=T), "Sows are washed with water and soap (Ref:No)",
-                   ifelse(grepl("E2_Cleaned_equip_168_",EF_listDF1$PREDS,fixed=T), "Equipemnt from other farms is always cleaned and disinfected first (Ref:No)",
+                   ifelse(grepl("E2_Cleaned_equip_168_",EF_listDF1$PREDS,fixed=T), "Equipment from other farms is always cleaned and disinfected first (Ref:No)",
                    ifelse(grepl("A15_UBNs_num_35_",EF_listDF1$PREDS,fixed=T), "Number of farms supplying pigs to the farm within the year of 2019",
-                   ifelse(grepl("CGH_with_sows_A33",EF_listDF1$PREDS,fixed=T), "At least one builidng contains weaners with sows (Ref:No)",
+                   ifelse(grepl("CGH_with_sows_A33",EF_listDF1$PREDS,fixed=T), "At least one building contains weaners with sows (Ref:No)",
                    ifelse(grepl("Arrival_animals_Gelten",EF_listDF1$PREDS,fixed=T), "Gilts are introduced externally (Ref:No)",
                    ifelse(grepl("Tail_docking",EF_listDF1$PREDS,fixed=T), "Tail docking of sucklings (Ref:No)",
                    ifelse(grepl("Conventioneel",EF_listDF1$PREDS,fixed=T), "The farm is conventional (Ref:No)",
@@ -1310,7 +1332,7 @@ EF_listDF1$PREDS<-ifelse(grepl("Naaldvrij_Needle_Zuig_Bin",EF_listDF1$PREDS,fixe
                           ifelse(grepl("BiologischBeterleven3",EF_listDF1$PREDS,fixed=T), "The farm is biological/Beter_Leven_3 (Ref:No)",
                            ifelse(grepl("Companion_animals_cont_with_dier_F3",EF_listDF1$PREDS,fixed=T), "Companion animals come in contact with the production animals (Ref:No)",
                            ifelse(grepl("Ssuis_SowVac_Bin",EF_listDF1$PREDS,fixed=T), "Streptococcus Suis vaccination in sows (Ref:No)",
-                           ifelse(grepl("Floor_Grid",EF_listDF1$PREDS,fixed=T), "Slatted floor is present (Ref:No slatts)",
+                           ifelse(grepl("Floor_Grid",EF_listDF1$PREDS,fixed=T), "Type of grid on weaner’s floor is fully slatted (Ref:Fully solid)",
                            ifelse(grepl("Quarant_room_Gilts",EF_listDF1$PREDS,fixed=T), "Incoming gilts are quarantined (Ref:No)",
                            ifelse(grepl("Aprt_dis_per_cycle",EF_listDF1$PREDS,fixed=T), "Wound inflicting apparatus for sucklings is dinsfected per cycle (Ref:No)",
                            ifelse(grepl("A36_Resp_Areas1_110_",EF_listDF1$PREDS,fixed=T), "Score of complying with measures of clean and dirty outdoor areas of farm",
@@ -1330,22 +1352,22 @@ EF_listDF1$PREDS<-ifelse(grepl("Naaldvrij_Needle_Zuig_Bin",EF_listDF1$PREDS,fixe
                          ifelse(grepl("A36_Sep_Areas1_109_",EF_listDF1$PREDS,fixed=T), "There is clear separation between clean and dirty areas in the outdoors of the farm (Ref:No)",
                          ifelse(grepl("A26_Lactation_length_34_",EF_listDF1$PREDS,fixed=T), "Lactation period length (d)",
                          ifelse(grepl("I4ii_Drying_days_506_",EF_listDF1$PREDS,fixed=T), "Drying period length after cleaning and before new animals arrive (d)",
-                         ifelse(grepl("CGH_with_sowsngilts_A33",EF_listDF1$PREDS,fixed=T), "At least one builidng contains weaners with sows/gilts  (Ref:No)",
-                         ifelse(grepl("Loading_bay_bin_B1",EF_listDF1$PREDS,fixed=T), "Presence of loading bay  (Ref:No)",
+                         ifelse(grepl("CGH_with_sowsngilts_A33",EF_listDF1$PREDS,fixed=T), "At least one building contains weaners with sows/gilts (Ref:No)",
+                         ifelse(grepl("Loading_bay_bin_B1",EF_listDF1$PREDS,fixed=T), "Presence of loading bay (Ref:No)",
                                 EF_listDF1$PREDS)))))))))))))))))))))))))))))))))))))))))))))))))
 EF_listDF1$PREDS<-ifelse(grepl("KIalleenzoekbeeruiteigenopfok",EF_listDF1$PREDS,fixed=T), "Only search boars present and supplied from own production (Ref:No)",
                   ifelse(grepl("J1_Consistency_score_509_",EF_listDF1$PREDS,fixed=T), "Score for quality of workflow",
                   ifelse(grepl("Eigenopfok",EF_listDF1$PREDS,fixed=T), "Gilts originate from own production",
                   ifelse(grepl("Pen_room_Gilts",EF_listDF1$PREDS,fixed=T), "Incoming animals are placed in an isolated pens within the main production building (Ref:No)",
-                  ifelse(grepl("Plastic_grid_floor",EF_listDF1$PREDS,fixed=T), "Plastic slatted is present (Ref:No)",
+                  ifelse(grepl("Plastic_grid_floor",EF_listDF1$PREDS,fixed=T), "Plastic slatted floor is present (Ref:No)",
                   ifelse(grepl("Sick_bay_Apart_hok_or_none_G12",EF_listDF1$PREDS,fixed=T), "Sick bay is either absent or just one neighbouring pen (Ref:No)",
-                  ifelse(grepl("hbowo",EF_listDF1$PREDS,fixed=T), "Terciary education by farmer (Ref:No)",
+                  ifelse(grepl("hbowo",EF_listDF1$PREDS,fixed=T), "Tertiary education by farmer (Ref:No)",
                   ifelse(grepl("CGH_general_A33",EF_listDF1$PREDS,fixed=T), "At least one builidng contains weaners with other age groups (Ref:No)",
                   ifelse(grepl("E6_Foot_baths_score_173_",EF_listDF1$PREDS,fixed=T), "Score for use of foot baths",
                   ifelse(grepl("Brijvoer",EF_listDF1$PREDS,fixed=T), "Feed is in liquid form (Ref:No)",
                   ifelse(grepl("J2_Invest_score_510_",EF_listDF1$PREDS,fixed=T), "Farmer's investment motivation score",
                   ifelse(grepl("G14_Inspect_sick_250_",EF_listDF1$PREDS,fixed=T), "Inspection of sick animals is taking place at least twice a day with immediate isolation (Ref:No)",
-                  ifelse(grepl("Fosf",EF_listDF1$PREDS,fixed=T), "Posphorus levels in feed",
+                  ifelse(grepl("Fosf",EF_listDF1$PREDS,fixed=T), "Phosphorus levels in feed",
                   ifelse(grepl("I6_Disinfecting_score_508_",EF_listDF1$PREDS,fixed=T), "Score of disinfection procedure",
                   ifelse(grepl("C5_Number_of_feeds_135_",EF_listDF1$PREDS,fixed=T), "Number of different feeds used throughout the weaning period",
                   ifelse(grepl("Diseased_visits_start_D1",EF_listDF1$PREDS,fixed=T), "Diseased animals are visited in the beginning of the round (Ref:No)",
@@ -1355,16 +1377,16 @@ EF_listDF1$PREDS<-ifelse(grepl("KIalleenzoekbeeruiteigenopfok",EF_listDF1$PREDS,
                   ifelse(grepl("Build_Out_years",EF_listDF1$PREDS,fixed=T), "Age of the exterior of buildings with weaners",
                   ifelse(grepl("G5_Slow_growers_mix_223_",EF_listDF1$PREDS,fixed=T), "There is mixing of slow growers",
                   ifelse(grepl("A7iib_Cattle_14_",EF_listDF1$PREDS,fixed=T), "Cattle are present on the farm (Ref:No)",
-                  ifelse(grepl("Weekly_system_123_G1",EF_listDF1$PREDS,fixed=T), "The farrowing rythm is every 1,2 or 3 weeks (Ref:4 or 5)",
+                  ifelse(grepl("Weekly_system_123_G1",EF_listDF1$PREDS,fixed=T), "The farrowing rhythm is every 1, 2 or 3 weeks (Ref:4 or 5)",
                   ifelse(grepl("H6v_Drying_powderS_262_",EF_listDF1$PREDS,fixed=T), "Drying powders are used in sows (Ref:No)",
                   ifelse(grepl("C1_Water_source_127_",EF_listDF1$PREDS,fixed=T), "Water is supplied from public network (Ref:Private source)",
                   ifelse(grepl("hokken_Needle_Zeu_Bin",EF_listDF1$PREDS,fixed=T), "Needles are changed per pen in sows (Ref:No)",
                   ifelse(grepl("B1_Loading_bay_Hygiene_Score_113_",EF_listDF1$PREDS,fixed=T), "Hygiene score of loading bay",
-                  ifelse(grepl("G3_AllinAllout_farrow_221_",EF_listDF1$PREDS,fixed=T), "AIAO system is used during farrowing",
+                  ifelse(grepl("G3_AllinAllout_farrow_221_",EF_listDF1$PREDS,fixed=T), "AIAO system is used during farrowing (Ref:No)",
                   ifelse(grepl("Water_check_More_C3",EF_listDF1$PREDS,fixed=T), "Water is checked more than once per year (Ref:No)",
-                  ifelse(grepl("Weekly_system_12_G1",EF_listDF1$PREDS,fixed=T), "The farrowing rythm is every 1 or 2 weeks (Ref:3, 4 or 5)",
+                  ifelse(grepl("Weekly_system_12_G1",EF_listDF1$PREDS,fixed=T), "The farrowing rhythm is every 1 or 2 weeks (Ref:3, 4 or 5)",
                   ifelse(grepl("Aprt_dis_Else",EF_listDF1$PREDS,fixed=T), "Non-antibiotic disinfectants for wound inflicting apparatus are used",
-                  ifelse(grepl("Diseased_visits_noroder_D1",EF_listDF1$PREDS,fixed=T), "No order is followed when visitng diseased animals",
+                  ifelse(grepl("Diseased_visits_noroder_D1",EF_listDF1$PREDS,fixed=T), "No order is followed when visiting diseased animals",
                   ifelse(grepl("E5_Disinf_equip_before_arrival_172_",EF_listDF1$PREDS,fixed=T), "Equipment is disinfected when arrives on farm (Ref:No)",
                   ifelse(grepl("D4i_Hyg_lock2_158_",EF_listDF1$PREDS,fixed=T), "A hygiene lock is present for each building (Ref:No)",
                   ifelse(grepl("Ecoli_SowVac_Bin",EF_listDF1$PREDS,fixed=T), "E. coli vaccination in sows (Ref:No)",
@@ -1373,8 +1395,21 @@ EF_listDF1$PREDS<-ifelse(grepl("KIalleenzoekbeeruiteigenopfok",EF_listDF1$PREDS,
                   ifelse(grepl("A1_Province_4_PercDen",EF_listDF1$PREDS,fixed=T), "Pig density of province where the farm is located (heads/Ut.Agr.Ar. in ha)",
                   ifelse(grepl("Myco_SowVac_Bin",EF_listDF1$PREDS,fixed=T), "Mycoplasma vaccination in sows (Ref:No)",
                   ifelse(grepl("A31_Open_sow_period_44_",EF_listDF1$PREDS,fixed=T), "Open sow period length (d)",
-                  ifelse(grepl("Weaners_density_Overbin_A32",EF_listDF1$PREDS,fixed=T), "Density in weaners is above requirements respective to the type of production",
-                                EF_listDF1$PREDS)))))))))))))))))))))))))))))))))))))))))
+                  ifelse(grepl("Weaners_density_Overbin_A32",EF_listDF1$PREDS,fixed=T), "Density in weaners is above requirements respective to the type of production (Ref:No)",
+                  ifelse(grepl("Aprt_dis_Freq",EF_listDF1$PREDS,fixed=T), "Frequency of cleaning wound inflicting apparatuses for sucklings",
+                  ifelse(grepl("Rota_SowVac_Bin",EF_listDF1$PREDS,fixed=T), "Rotavirus vaccination in sows (Ref:No)",
+                  ifelse(grepl("CGH_with_sowsORgilts_A33",EF_listDF1$PREDS,fixed=T), "At least one builidng contains weaners with sows or gilts (Ref:No)",
+                  ifelse(grepl("Diseased_visits_end_D1",EF_listDF1$PREDS,fixed=T), "Diseased animals are visited in the end of the round (Ref:No)",
+                                EF_listDF1$PREDS)))))))))))))))))))))))))))))))))))))))))))))
+
+
+EF_listDF1$PREDS<-ifelse(grepl("Auto_vent",EF_listDF1$PREDS,fixed=T), "In weaners buildings there is automatic ventilation (Ref:No)",
+                  ifelse(grepl("C8vi_Myc_binder_149_",EF_listDF1$PREDS,fixed=T), "Frequency of using mycotoxins binders in feed for weaners",
+                  ifelse(grepl("Swine_free_contact_24h_D3",EF_listDF1$PREDS,fixed=T), "Visitors of the farm have no contact with other pigs for at least 24h (Ref:No)",
+                  ifelse(grepl("D4iii_Use_Score1_157_",EF_listDF1$PREDS,fixed=T), "Score for properly using the hygiene lock of the whole farm",
+                  ifelse(grepl("Bed_presence",EF_listDF1$PREDS,fixed=T), "Using of bedding material in weaners buildings",
+                  ifelse(grepl("Foot_baths_bin_E6",EF_listDF1$PREDS,fixed=T), "Presence of disinfection foot baths on the farm",
+                         EF_listDF1$PREDS))))))
 ################
 EF_listDF1$PREDS<-make.unique(EF_listDF1$PREDS, sep = " |")
 EF_listDF1$PREDS<-as.character(EF_listDF1$PREDS)
@@ -1413,7 +1448,7 @@ Wean_dis_plot<-ggplot(EF_listDF1[which(grepl("weaners",EF_listDF1$RESP,fixed=T))
   geom_errorbar(aes(ymin=lower_ES, ymax=upper_ES,col=RESP), 
                 lwd=0.75, width=0) +
   coord_flip()+
-  geom_point(aes(col=RESP,size=factor(count,levels=c("1","2","3","4")), shape=factor(Sign,levels=c("No","Yes")))) +
+ geom_point(aes(col=RESP,size=factor(count,levels=c("1","2","3","4")), shape=factor(Sign,levels=c("No","Yes")))) +
   scale_colour_manual(values=c( "dark green",
                                 "dark green",#Locomotion weaners
                                 "dark blue",#Resp_weaners
