@@ -75,8 +75,8 @@ Vacsdf<-data.frame(VACC=c(rep("Ecoli_SowVac_Bin",2),rep("Clostr_SowVac_Bin",1),r
                          "Gespeendebiggen__DIGESTIETRACTUS____Bin","H9_ii_Whole_DDDA_wp_500_","H9_ii_Whole_DDDA_fp_501_"))
 
 treez<-500
-rfMaxit_B<- 1 #200
-rfMaxit<- 1 #100
+rfMaxit_B<- 200 #200
+rfMaxit<- 100 #100
 rfMaxit0<-1 #3
 B_reps = 0
 activate_bootstrap=F
@@ -425,7 +425,7 @@ any(is.na(Sep_d))
 TEN_TIMES_RES<-list()
 TEN_TIMES_res_adj<-list()
 
-REPET<-2
+REPET<-200
 for (BS in 1:REPET){
   print(paste("BS->",BS))
   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
