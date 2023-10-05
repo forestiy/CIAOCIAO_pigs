@@ -1291,15 +1291,27 @@ EF_listDF1$CI_cross<-ifelse(EF_listDF1$upper_ES * EF_listDF1$lower_ES >0,"ok","c
 
 
 
-
 EF_listDF1$RESP<-ifelse(EF_listDF1$RESP=="Gespeendebiggen__RESPIRATIETRACTUS____Bin","Respiratory in weaners",
                  ifelse(EF_listDF1$RESP=="Zeugen__LOCOMOTIEZENUWSTELSEL____Bin","Musculoskeletal/Neurological in sows",
                  ifelse(EF_listDF1$RESP=="Zuigendebiggen__LOCOMOTIEZENUWSTELSEL____Bin","Musculoskeletal/Neurological in sucklings",
                  ifelse(EF_listDF1$RESP=="Gespeendebiggen__DIGESTIETRACTUS____Bin","Digestive in weaners",
                  ifelse(EF_listDF1$RESP=="Gespeendebiggen__LOCOMOTIEZENUWSTELSEL____Bin","Musculoskeletal/Neurological in weaners",
-                 ifelse(EF_listDF1$RESP=="Zeugen_Indtr__Bin","Individual Treatments in sows",
+                 ifelse(EF_listDF1$RESP=="Zeugen_Indtr__Bin","Individual Treatments in sows/sucklings",
                  ifelse(EF_listDF1$RESP=="Weaners_Indtr__Bin","Individual Treatments in weaners",
-                           "WRONG")))))))
+
+                 ifelse(EF_listDF1$RESP=="Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin","Trimethoprim-Sulfonamides present in weaners",
+                 ifelse(EF_listDF1$RESP=="Trimethoprim_SulfonamidesAMU_Ind_sows_Bin","Trimethoprim-Sulfonamides present in sows/sucklings",
+                 ifelse(EF_listDF1$RESP=="TetracyclinesAMU_Ind_weaners_Bin","Tetracyclines present in weaners",
+                 ifelse(EF_listDF1$RESP=="TetracyclinesAMU_Ind_sows_Bin","Tetracyclines present in sows/sucklings",
+                 ifelse(EF_listDF1$RESP=="PenicillinsAMU_Ind_weaners_Bin","Penicillins present in weaners",
+                 ifelse(EF_listDF1$RESP=="PenicillinsAMU_Ind_sows_Bin","Penicillins present in sows/sucklings",
+                 ifelse(EF_listDF1$RESP=="Macrolides_lincosamidesAMU_Ind_weaners_Bin","Macrolides-Lincosamides present in weaners",
+                 ifelse(EF_listDF1$RESP=="Macrolides_lincosamidesAMU_Ind_weaners","Macrolides-Lincosamides use in weaners",
+                 ifelse(EF_listDF1$RESP=="Macrolides_lincosamidesAMU_Ind_sows_Bin","Macrolides-Lincosamides present in sows/sucklings",
+                 ifelse(EF_listDF1$RESP=="H9_ii_Whole_DDDA_wp_500_","Total AMU in weaners",
+                 ifelse(EF_listDF1$RESP=="H9_ii_Whole_DDDA_sows_499_","Total AMU in sows/sucklings",
+                 ifelse(EF_listDF1$RESP=="H9_ii_Whole_DDDA_fp_501_","Total AMU in fatteners",
+                           "WRONG")))))))))))))))))))
 
 # #############_______Names
 
@@ -1501,3 +1513,92 @@ Sows_dis_plot<-ggplot(EF_listDF1[which(grepl("sows|suck",EF_listDF1$RESP)),], ae
 #        shape = "none")
 
 Sows_dis_plot
+
+
+
+
+##AMU plots
+                                
+
+#same but for AMU present in weaners
+present_AMU_weaners_plot<-ggplot(EF_listDF1[which(grepl("present in weaners",EF_listDF1$RESP)),], aes(PREDS, mean_ES)) + #|use in weaners
+  geom_point(aes(col=RESP,size=factor(count,levels=c("1","2","3","4","5")), shape=factor(Sign,levels=c("No","Yes"))))+ 
+  geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
+  geom_errorbar(aes(ymin=lower_ES, ymax=upper_ES,col=RESP),  #,linetype=factor(CI_cross,levels=c("No","Yes"))
+           lwd=0.75, width=0) +
+  coord_flip()+
+  scale_colour_manual(values=c(palette[1:4]),breaks=c( "Macrolides-Lincosamides present in weaners",
+                                                  #"Macrolides/Lincosamides use in weaners",
+                                                  "Penicillins present in weaners",
+                                                  "Tetracyclines present in weaners",
+                                                  "Trimethoprim-Sulfonamides present in weaners"))+
+  scale_shape_manual(values=c(17,19))+
+  scale_size_manual(values=c(2,3,4,5,6))+
+  labs(y="Expected change in relative probability of using an AB class",x="On-farm practices",colour="Outcomes of AB classes in weaners",
+       size="Number of outcomes it was selected for overall",shape="Uniform direction across all the outcomes",linetype="Crosses zero")+
+  theme(legend.position="right",panel.background = element_rect(fill = 'white'),
+        legend.text = element_text(face="bold", size=sizz),
+        legend.title = element_text(face="bold", size=sizz),
+        axis.text.x=element_text(angle=0,hjust=0.3,vjust=1,face="bold", size=sizz),
+        axis.text.y=element_text(face="bold", size=sizz),
+        axis.title.y = element_text(vjust=2,face="bold", size=sizz),
+        axis.title.x = element_text(vjust=0,face="bold", size=sizz),
+        panel.grid = element_line(colour = "#e3e3e3"))+
+  guides(colour = guide_legend(order = 1),shape = guide_legend(order = 2),size = guide_legend(order = 3))
+
+present_AMU_weaners_plot
+
+#same but for AMU present in sows
+present_AMU_sows_plot<-ggplot(EF_listDF1[which(grepl("present in sows",EF_listDF1$RESP)),], aes(PREDS, mean_ES)) + 
+  geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
+  geom_errorbar(aes(ymin=lower_ES, ymax=upper_ES,col=RESP), #,linetype=factor(CI_cross,levels=c("No","Yes")) 
+           lwd=0.75, width=0) +
+  coord_flip()+
+  geom_point(aes(col=RESP,size=factor(count,levels=c("1","2","3","4","5")), shape=factor(Sign,levels=c("No","Yes")))) +
+  scale_colour_manual(values=(palette[6:10]),breaks=c( "Macrolides-Lincosamides present in sows/sucklings", 
+                                                    "Penicillins present in sows/sucklings",
+                                                    "Tetracyclines present in sows/sucklings",
+                                                    "Trimethoprim-Sulfonamides present in sows/sucklings"))+
+  scale_shape_manual(values=c(17,19))+
+  scale_size_manual(values=c(2,3,4,5,6))+
+  labs(y="Expected change in relative probability of using an AB class",x="On-farm practices",colour="Outcomes of AB classes in sows/sucklings",
+       size="Number of outcomes it was selected for overall",shape="Uniform direction across all the outcomes",linetype="Crosses zero")+
+  theme(legend.position="right",panel.background = element_rect(fill = 'white'),
+        legend.text = element_text(face="bold", size=sizz),
+        legend.title = element_text(face="bold", size=sizz),
+        axis.text.x=element_text(angle=0,hjust=0.3,vjust=1,face="bold", size=sizz),
+        axis.text.y=element_text(face="bold", size=sizz),
+        axis.title.y = element_text(vjust=2,face="bold", size=sizz),
+        axis.title.x = element_text(vjust=0,face="bold", size=sizz),
+        panel.grid = element_line(colour = "#e3e3e3"))+
+  guides(colour = guide_legend(order = 1),shape = guide_legend(order = 2),size = guide_legend(order = 3))
+present_AMU_sows_plot
+
+
+
+#same but for AMU overall
+AMU__plot<-ggplot(EF_listDF1[which(grepl("AMU|use in weaners",EF_listDF1$RESP)),], aes(PREDS, mean_ES)) + 
+  geom_hline(yintercept=0, lty=2, lwd=1, colour="grey50") +
+  geom_errorbar(aes(ymin=lower_ES, ymax=upper_ES,col=RESP), #,linetype=factor(CI_cross,levels=c("No","Yes"))
+           lwd=0.75, width=0) +
+  coord_flip()+
+  geom_point(aes(col=RESP,size=factor(count,levels=c("1","2","3","4","5")), shape=factor(Sign,levels=c("No","Yes")))) + 
+  scale_colour_manual(values=(palette[c(5,11,14,16)]),breaks=c("Macrolides-Lincosamides use in weaners", 
+                                                    "Total AMU in fatteners",
+                                                    "Total AMU in sows/sucklings",
+                                                    "Total AMU in weaners"))+
+  scale_shape_manual(values=c(17,19))+
+  scale_size_manual(values=c(2,3,4,5,6))+#ylim(-3,7.5)+
+  labs(y="Expected change in DDDA/Y",x="On-farm practices",colour="Outcomes of AMU in all groups",
+       size="Number of outcomes it was selected for overall",shape="Uniform direction across all the outcomes",linetype="Crosses zero")+
+  theme(legend.position="right",panel.background = element_rect(fill = 'white'),
+        legend.text = element_text(face="bold", size=sizz),
+        legend.title = element_text(face="bold", size=sizz),
+        axis.text.x=element_text(angle=0,hjust=0.3,vjust=1,face="bold", size=sizz),
+        axis.text.y=element_text(face="bold", size=sizz),
+        axis.title.y = element_text(vjust=2,face="bold", size=sizz),
+        axis.title.x = element_text(vjust=0,face="bold", size=sizz),
+        panel.grid = element_line(colour = "#e3e3e3"))+
+  guides(colour = guide_legend(order = 1),shape = guide_legend(order = 2),size = guide_legend(order = 3))
+
+AMU__plot
