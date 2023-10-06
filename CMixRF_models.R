@@ -30,25 +30,25 @@ secondary_questions_in<-c("E3ii_Easily_recognised_170_"
                           #,"Rota_Sow_Rep_Vac_Bin"#"Rota_SowVac_Bin"
                           ,"PPV_Sow_Rep_Vac_Bin")# "PPV_SowVac_Bin"
 
-diseases<-c(#"Zeugen_Indtr__Bin",
+diseases<-c("Zeugen_Indtr__Bin",
   "Zeugen__LOCOMOTIEZENUWSTELSEL____Bin",
   "Zuigendebiggen__LOCOMOTIEZENUWSTELSEL____Bin",
   "Gespeendebiggen__DIGESTIETRACTUS____Bin",
   "Gespeendebiggen__LOCOMOTIEZENUWSTELSEL____Bin",
-  "Gespeendebiggen__RESPIRATIETRACTUS____Bin"#,
-  # "Weaners_Indtr__Bin",
-  # "H9_ii_Whole_DDDA_sows_499_",
-  # "H9_ii_Whole_DDDA_wp_500_",
-  # "H9_ii_Whole_DDDA_fp_501_",
-  # "Macrolides_lincosamidesAMU_Ind_sows_Bin",
-  # "Macrolides_lincosamidesAMU_Ind_weaners_Bin",
-  # "Macrolides_lincosamidesAMU_Ind_weaners",
-  # "PenicillinsAMU_Ind_sows_Bin",
-  # "PenicillinsAMU_Ind_weaners_Bin",
-  # "TetracyclinesAMU_Ind_sows_Bin",
-  # "TetracyclinesAMU_Ind_weaners_Bin",
-  # "Trimethoprim_SulfonamidesAMU_Ind_sows_Bin",
-  # "Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin"
+  "Gespeendebiggen__RESPIRATIETRACTUS____Bin",
+  "Weaners_Indtr__Bin",
+  "H9_ii_Whole_DDDA_sows_499_",
+  "H9_ii_Whole_DDDA_wp_500_",
+  "H9_ii_Whole_DDDA_fp_501_",
+  "Macrolides_lincosamidesAMU_Ind_sows_Bin",
+  "Macrolides_lincosamidesAMU_Ind_weaners_Bin",
+   "Macrolides_lincosamidesAMU_Ind_weaners",
+  "PenicillinsAMU_Ind_sows_Bin",
+  "PenicillinsAMU_Ind_weaners_Bin",
+   "TetracyclinesAMU_Ind_sows_Bin",
+  |"TetracyclinesAMU_Ind_weaners_Bin",
+  "Trimethoprim_SulfonamidesAMU_Ind_sows_Bin",
+   "Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin"
 )
 
 
