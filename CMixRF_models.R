@@ -46,7 +46,7 @@ diseases<-c("Zeugen_Indtr__Bin",
   "PenicillinsAMU_Ind_sows_Bin",
   "PenicillinsAMU_Ind_weaners_Bin",
    "TetracyclinesAMU_Ind_sows_Bin",
-  |"TetracyclinesAMU_Ind_weaners_Bin",
+  "TetracyclinesAMU_Ind_weaners_Bin",
   "Trimethoprim_SulfonamidesAMU_Ind_sows_Bin",
    "Trimethoprim_SulfonamidesAMU_Ind_weaners_Bin"
 )
@@ -425,7 +425,7 @@ any(is.na(Sep_d))
 TEN_TIMES_RES<-list()
 TEN_TIMES_res_adj<-list()
 
-REPET<-200
+REPET<-20
 for (BS in 1:REPET){
   print(paste("BS->",BS))
   #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -1036,7 +1036,7 @@ names(All_res_adj)<-NULL
 diseases<-diseases_names
 
 
-B_reps = 2
+B_reps = 200
 activate_bootstrap=T
 
 
